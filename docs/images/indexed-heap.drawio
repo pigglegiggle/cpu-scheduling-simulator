@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="indexed-heap">
+    <mxGraphModel pageWidth="1200" pageHeight="540">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Indexed min-heap" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#111111;fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="0" y="12" width="1200" height="40" />
+        </mxCell>
+        <mxCell id="3" value="Heap tree: example entries shown as ID / rank" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="65" width="740" height="32" />
+        </mxCell>
+        <mxCell id="4" style="endArrow=block;endFill=1;strokeColor=#222222;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="390" y="166" />
+            <mxPoint as="targetPoint" x="220" y="225" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" style="endArrow=block;endFill=1;strokeColor=#222222;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="390" y="166" />
+            <mxPoint as="targetPoint" x="560" y="225" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" style="endArrow=block;endFill=1;strokeColor=#222222;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="220" y="281" />
+            <mxPoint as="targetPoint" x="110" y="340" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" style="endArrow=block;endFill=1;strokeColor=#222222;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="220" y="281" />
+            <mxPoint as="targetPoint" x="330" y="340" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" style="endArrow=block;endFill=1;strokeColor=#222222;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="560" y="281" />
+            <mxPoint as="targetPoint" x="550" y="340" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" value="index 0&#10;40 / 5" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="310" y="110" width="160" height="56" />
+        </mxCell>
+        <mxCell id="10" value="index 1&#10;20 / 12" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="140" y="225" width="160" height="56" />
+        </mxCell>
+        <mxCell id="11" value="index 2&#10;60 / 8" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="480" y="225" width="160" height="56" />
+        </mxCell>
+        <mxCell id="12" value="index 3&#10;10 / 32" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="340" width="160" height="56" />
+        </mxCell>
+        <mxCell id="13" value="index 4&#10;50 / 24" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="250" y="340" width="160" height="56" />
+        </mxCell>
+        <mxCell id="14" value="index 5&#10;30 / 16" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="470" y="340" width="160" height="56" />
+        </mxCell>
+        <mxCell id="15" value="ID-to-position map" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="855" y="65" width="280" height="32" />
+        </mxCell>
+        <mxCell id="16" value="40  →  0" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="110" width="240" height="48" />
+        </mxCell>
+        <mxCell id="17" value="20  →  1" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="158" width="240" height="48" />
+        </mxCell>
+        <mxCell id="18" value="60  →  2" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="206" width="240" height="48" />
+        </mxCell>
+        <mxCell id="19" value="10  →  3" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="254" width="240" height="48" />
+        </mxCell>
+        <mxCell id="20" value="50  →  4" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="302" width="240" height="48" />
+        </mxCell>
+        <mxCell id="21" value="30  →  5" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=#222222;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="350" width="240" height="48" />
+        </mxCell>
+        <mxCell id="22" value="Array indexes:   0      1      2      3      4      5" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="420" width="740" height="30" />
+        </mxCell>
+        <mxCell id="23" value="Entry IDs:          40    20    60    10    50    30" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#111111;fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="451" width="740" height="30" />
+        </mxCell>
+        <mxCell id="24" value="Peek O(1) / insert, update and erase O(log n) / each swap repairs both map entries" style="whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#111111;fillColor=#ffffff;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="0" y="497" width="1200" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -8,13 +8,13 @@ This is a virtual-time simulator with known execution demands and zero dispatch 
 
 ## Architecture
 
-![Architecture: CLI and Streamlit feed validated JSON and periodic job expansion through pybind11 into the shared C++ event loop, with indexed ready/deadline heaps and timeline/metrics outputs.](docs/images/architecture.png)
+![Architecture: CLI and Streamlit feed validated JSON and periodic job expansion through pybind11 into the shared C++ event loop, with indexed ready/deadline heaps and timeline/metrics outputs.](docs/images/architecture.svg)
 
 Python handles JSON, periodic expansion, presentation and tooling. **All job selection, preemption, cancellation, deadline tracking, heap mutations and metrics run in C++.** The UI calls the native library directly; no HTTP API or subprocess per simulation is needed.
 
 ## The DSA at the center
 
-![Indexed min-heap tree, array representation and matching ID-to-position map.](docs/images/indexed-heap.png)
+![Indexed min-heap tree, array representation and matching ID-to-position map.](docs/images/indexed-heap.svg)
 
 | Structure | Purpose | Cost |
 |---|---|---|
@@ -177,4 +177,4 @@ docs/                         Architecture, format, run guide, measured report
 study/                        Private learning notes (ignored by Git)
 ```
 
-Public documentation: [How to run](docs/HOW_TO_RUN.md), [architecture](docs/ARCHITECTURE.md), [input format](docs/WORKLOAD_FORMAT.md), [benchmark methodology](docs/BENCHMARKS.md). Architecture images were generated with imagegen from the implemented design; [prompts](docs/images/prompts.md) are retained.
+Public documentation: [How to run](docs/HOW_TO_RUN.md), [architecture](docs/ARCHITECTURE.md), [input format](docs/WORKLOAD_FORMAT.md), [benchmark methodology](docs/BENCHMARKS.md). Diagrams use plain SVG with [editable draw.io sources](docs/DIAGRAMS.md).
