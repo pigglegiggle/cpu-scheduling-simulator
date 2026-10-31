@@ -4,12 +4,16 @@ from pathlib import Path
 import sys
 from .io import compare, load, prepare, run
 
-parser = argparse.ArgumentParser(description="Deadline-Aware Scheduling Simulator (virtual single CPU)")
+parser = argparse.ArgumentParser(
+    description="Deadline-Aware Scheduling Simulator (virtual single CPU)"
+)
 parser.add_argument("command", choices=["run", "compare", "validate"])
 parser.add_argument("workload", type=Path)
 parser.add_argument("--policy", choices=["edf", "fixed", "fifo"], default="edf")
 parser.add_argument("--output", type=Path)
-parser.add_argument("--no-trace", action="store_true", help="omit event trace; timeline and metrics remain")
+parser.add_argument(
+    "--no-trace", action="store_true", help="omit event trace; timeline and metrics remain"
+)
 args = parser.parse_args()
 try:
     document = load(args.workload)
@@ -20,7 +24,11 @@ try:
     else:
         # Native execution validates all core numeric constraints too.
         verified = run(document, "edf", trace=False)
-        result = {"valid": True, "jobs": len(verified["jobs"]), "actions": len(prepare(document)[1])}
+        result = {
+            "valid": True,
+            "jobs": len(verified["jobs"]),
+            "actions": len(prepare(document)[1]),
+        }
     text = json.dumps(result, indent=2, allow_nan=False) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

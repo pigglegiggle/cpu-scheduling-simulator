@@ -1,4 +1,5 @@
 """Run the C++ harness and retain evidence plus a human-readable measured report."""
+
 import datetime
 import hashlib
 import json
@@ -23,10 +24,19 @@ result["recorded_at"] = datetime.datetime.now().astimezone().isoformat()
 result["platform"] = platform.platform()
 result["compiler"] = subprocess.check_output(["clang++", "--version"], text=True).splitlines()[0]
 result["flags"] = "-std=c++17 -O2 -Wall -Wextra -Wpedantic"
-result["sha256"] = {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in
-                    [binary, root/"tests/benchmark.cpp", root/"src/scheduler.cpp", root/"include/das/indexed_heap.hpp"]}
+result["sha256"] = {
+    str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest()
+    for p in [
+        binary,
+        root / "tests/benchmark.cpp",
+        root / "src/scheduler.cpp",
+        root / "include/das/indexed_heap.hpp",
+    ]
+}
 if platform.system() == "Darwin":
-    result["cpu"] = subprocess.check_output(["sysctl", "-n", "machdep.cpu.brand_string"], text=True).strip()
+    result["cpu"] = subprocess.check_output(
+        ["sysctl", "-n", "machdep.cpu.brand_string"], text=True
+    ).strip()
     result["ram_bytes"] = int(subprocess.check_output(["sysctl", "-n", "hw.memsize"], text=True))
     match = re.search(r"(\d+)\s+maximum resident set size", observed.stderr)
     if match:
@@ -45,23 +55,53 @@ result["methodology"] = [
 ]
 raw = output / "latest.json"
 raw.write_text(json.dumps(result, indent=2) + "\n")
-lines = ["# Measured benchmark report", "", f"Recorded: {result['recorded_at']}", "",
-         f"Platform: {result['platform']}. Compiler: {result['compiler']}. Optimization: `-O2`.", "",
-         "## Indexed heap vs linear minimum scan", "",
-         "1,000 mutations per batch; seven measured batches after warm-up. Values are batch-amortized microseconds per mutation + minimum lookup, **not per-request latency percentiles**.", "",
-         "| Active entries | Indexed heap µs/op | Scan µs/op | Scan / heap | Verified |",
-         "|---:|---:|---:|---:|---|"]
+lines = [
+    "# Measured benchmark report",
+    "",
+    f"Recorded: {result['recorded_at']}",
+    "",
+    f"Platform: {result['platform']}. Compiler: {result['compiler']}. Optimization: `-O2`.",
+    "",
+    "## Indexed heap vs linear minimum scan",
+    "",
+    "1,000 mutations per batch; seven measured batches after warm-up. Values are batch-amortized microseconds per mutation + minimum lookup, **not per-request latency percentiles**.",
+    "",
+    "| Active entries | Indexed heap µs/op | Scan µs/op | Scan / heap | Verified |",
+    "|---:|---:|---:|---:|---|",
+]
 for size in result["sizes"]:
-    lines.append(f"| {size['jobs']:,} | {size['heap_median_us']:.3f} | {size['scan_median_us']:.3f} | {size['scan_median_us']/size['heap_median_us']:.2f}× | Every minimum ID |")
-lines += ["", "## Full EDF simulation", "", "One observation per size; trace disabled, timeline enabled. This is host computation time for a virtual workload.", "",
-          "| Jobs | Host wall ms | Completed | Cancelled | Peak ready entries |", "|---:|---:|---:|---:|---:|"]
+    lines.append(
+        f"| {size['jobs']:,} | {size['heap_median_us']:.3f} | {size['scan_median_us']:.3f} | {size['scan_median_us']/size['heap_median_us']:.2f}× | Every minimum ID |"
+    )
+lines += [
+    "",
+    "## Full EDF simulation",
+    "",
+    "One observation per size; trace disabled, timeline enabled. This is host computation time for a virtual workload.",
+    "",
+    "| Jobs | Host wall ms | Completed | Cancelled | Peak ready entries |",
+    "|---:|---:|---:|---:|---:|",
+]
 for size in result["sizes"]:
-    lines.append(f"| {size['jobs']:,} | {size['scheduler_wall_ms']:.2f} | {size['completed']:,} | {size['cancelled']:,} | {size['ready_peak']:,} |")
+    lines.append(
+        f"| {size['jobs']:,} | {size['scheduler_wall_ms']:.2f} | {size['completed']:,} | {size['cancelled']:,} | {size['ready_peak']:,} |"
+    )
 if "whole_harness_peak_rss_bytes" in result:
-    lines += ["", f"Whole harness peak RSS: **{result['whole_harness_peak_rss_bytes']/1048576:.2f} MiB** (includes all sizes and both methods)."]
-lines += ["", "## Method and limits", "", *["- " + item for item in result["methodology"]], "",
-          "This compares against a straightforward linear scan, not an optimized operating-system scheduler. Workloads are synthetic; the simulation is single-core, fully preemptible and uses known execution demands. Reproduce with `make benchmark`. Results depend on hardware, compiler and background load.", "",
-          "[Raw observations and source/binary hashes](benchmarks/latest.json).", ""]
-(root/"docs/PERFORMANCE_REPORT.md").write_text("\n".join(lines))
+    lines += [
+        "",
+        f"Whole harness peak RSS: **{result['whole_harness_peak_rss_bytes']/1048576:.2f} MiB** (includes all sizes and both methods).",
+    ]
+lines += [
+    "",
+    "## Method and limits",
+    "",
+    *["- " + item for item in result["methodology"]],
+    "",
+    "This compares against a straightforward linear scan, not an optimized operating-system scheduler. Workloads are synthetic; the simulation is single-core, fully preemptible and uses known execution demands. Reproduce with `make benchmark`. Results depend on hardware, compiler and background load.",
+    "",
+    "[Raw observations and source/binary hashes](benchmarks/latest.json).",
+    "",
+]
+(root / "docs/PERFORMANCE_REPORT.md").write_text("\n".join(lines))
 print(raw)
-print(root/"docs/PERFORMANCE_REPORT.md")
+print(root / "docs/PERFORMANCE_REPORT.md")
