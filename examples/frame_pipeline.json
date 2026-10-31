@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "name": "Frame and audio pipeline (illustrative)",
+  "time_unit": "ms",
+  "periodic": [
+    {"id": "audio", "period": 5, "execution": 1, "relative_deadline": 5, "count": 10, "priority": 0},
+    {"id": "frame", "period": 16, "execution": 7, "relative_deadline": 16, "count": 3, "priority": 1},
+    {"id": "telemetry", "period": 20, "execution": 4, "relative_deadline": 30, "count": 3, "priority": 2}
+  ]
+}

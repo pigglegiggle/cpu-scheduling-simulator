@@ -1,0 +1,9 @@
+{
+  "name": "Urgent job preempts background work",
+  "time_unit": "ticks",
+  "jobs": [
+    {"id": "background", "release": 0, "execution": 8, "deadline": 20, "priority": 5},
+    {"id": "urgent", "release": 2, "execution": 2, "deadline": 5, "priority": 0},
+    {"id": "normal", "release": 3, "execution": 2, "deadline": 12, "priority": 2}
+  ]
+}

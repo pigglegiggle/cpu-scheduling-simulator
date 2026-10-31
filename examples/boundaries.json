@@ -1,0 +1,9 @@
+{
+  "name": "Exact deadline and cancellation at release",
+  "jobs": [
+    {"id": "exact", "release": 0, "execution": 3, "deadline": 3},
+    {"id": "cancel-before-run", "release": 3, "execution": 2, "deadline": 5},
+    {"id": "late", "release": 10, "execution": 4, "deadline": 12}
+  ],
+  "actions": [{"time": 3, "job": "cancel-before-run", "kind": "cancel"}]
+}

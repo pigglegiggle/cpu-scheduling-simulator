@@ -1,0 +1,117 @@
+{
+  "seed": 20261101,
+  "operations": 1000,
+  "repetitions": 7,
+  "sizes": [
+    {
+      "jobs": 1000,
+      "heap_us_per_operation_samples": [
+        0.164083,
+        0.166958,
+        0.142333,
+        0.127209,
+        0.125459,
+        0.165584,
+        0.158875
+      ],
+      "scan_us_per_operation_samples": [
+        1.27487,
+        1.35288,
+        1.1165,
+        1.14775,
+        1.06325,
+        1.77392,
+        1.768
+      ],
+      "heap_median_us": 0.158875,
+      "scan_median_us": 1.27487,
+      "results_verified": true,
+      "scheduler_wall_ms": 1.05842,
+      "completed": 905,
+      "cancelled": 95,
+      "ready_peak": 806
+    },
+    {
+      "jobs": 10000,
+      "heap_us_per_operation_samples": [
+        0.141458,
+        0.102416,
+        0.099666,
+        0.08125,
+        0.079666,
+        0.073375,
+        0.073125
+      ],
+      "scan_us_per_operation_samples": [
+        10.0025,
+        8.70929,
+        7.98196,
+        7.41471,
+        6.96092,
+        6.60438,
+        6.37346
+      ],
+      "heap_median_us": 0.08125,
+      "scan_median_us": 7.41471,
+      "results_verified": true,
+      "scheduler_wall_ms": 4.88542,
+      "completed": 9010,
+      "cancelled": 990,
+      "ready_peak": 8911
+    },
+    {
+      "jobs": 100000,
+      "heap_us_per_operation_samples": [
+        0.088875,
+        0.085042,
+        0.082459,
+        0.081417,
+        0.08025,
+        0.080917,
+        0.079917
+      ],
+      "scan_us_per_operation_samples": [
+        57.5048,
+        57.5222,
+        57.5019,
+        57.4293,
+        58.2321,
+        57.394,
+        57.4828
+      ],
+      "heap_median_us": 0.081417,
+      "scan_median_us": 57.5019,
+      "results_verified": true,
+      "scheduler_wall_ms": 64.7126,
+      "completed": 90050,
+      "cancelled": 9950,
+      "ready_peak": 89951
+    }
+  ],
+  "harness_wall_seconds": 1.121068959000695,
+  "recorded_at": "2026-11-01T01:19:45.714168+07:00",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "flags": "-std=c++17 -O2 -Wall -Wextra -Wpedantic",
+  "sha256": {
+    "build/benchmark": "b26646ed6cca748d62c2833a719bf6bda9961c2460279c5cef5637f722c28db8",
+    "tests/benchmark.cpp": "d3944b56a8c3fcba08235eefb5280a1dc2c17d1a2e9fc535784e63418714de7c",
+    "src/scheduler.cpp": "bbb4f997ecf95db6252329aa31d1ea328246dda8d51cd3ade0479574710f6736",
+    "include/das/indexed_heap.hpp": "a723031ed812dde727da1594e0bcc947d91a14f22ea0217c5c09b2c1709167e1"
+  },
+  "cpu": "Apple M2",
+  "ram_bytes": 17179869184,
+  "whole_harness_peak_rss_bytes": 63291392,
+  "methodology": [
+    "1000 deterministic mutations per size; each mutation changes a rank or erases/reinserts an ID, then queries the minimum.",
+    "Every fourth mutation targets the current minimum and increases its rank above the initial range; other IDs are random. A separate ordered-set oracle prepares the workload outside timing.",
+    "Heap and scan initialization excluded. Scan updates a fixed-ID array in O(1), then scans all entries for its minimum.",
+    "Seven batch repetitions, alternating execution order after one warm-up; every minimum ID verified against scan.",
+    "Reported medians are medians of batch-amortized microseconds per mutation-plus-minimum, not per-request p50 latency.",
+    "The scan baseline does not measure its erase/reinsert bookkeeping, favoring scan for replacement operations.",
+    "Scheduler run includes validation, release/action sorting, two heaps, job results and timeline, but excludes event trace serialization.",
+    "Each scheduler size has one wall-time observation; do not interpret these as scheduler latency percentiles.",
+    "Virtual CPU time has zero dispatch/context-switch cost; host runtime is a separate metric, not an RTOS timing guarantee.",
+    "RSS, where available, is the peak of the entire harness including baseline and scheduler, not index-only or per-size memory."
+  ]
+}

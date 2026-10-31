@@ -1,0 +1,8 @@
+{
+  "name": "Overloaded CPU: no policy can meet every deadline",
+  "time_unit": "ms",
+  "periodic": [
+    {"id": "inspection", "period": 10, "execution": 7, "relative_deadline": 10, "count": 6, "priority": 0},
+    {"id": "logging", "period": 10, "execution": 6, "relative_deadline": 10, "count": 6, "priority": 1}
+  ]
+}

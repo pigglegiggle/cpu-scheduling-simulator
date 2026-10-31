@@ -1,0 +1,16 @@
+{
+  "name": "Change deadlines, reprioritize, and cancel",
+  "time_unit": "ticks",
+  "jobs": [
+    {"id": "A", "release": 0, "execution": 9, "deadline": 20, "priority": 2},
+    {"id": "B", "release": 0, "execution": 4, "deadline": 15, "priority": 3},
+    {"id": "C", "release": 5, "execution": 3, "deadline": 16, "priority": 1},
+    {"id": "D", "release": 9, "execution": 2, "deadline": 15, "priority": 0}
+  ],
+  "actions": [
+    {"time": 1, "job": "A", "kind": "deadline", "value": 7},
+    {"time": 2, "job": "B", "kind": "priority", "value": 0},
+    {"time": 4, "job": "C", "kind": "cancel"},
+    {"time": 8, "job": "A", "kind": "deadline", "value": 18}
+  ]
+}
