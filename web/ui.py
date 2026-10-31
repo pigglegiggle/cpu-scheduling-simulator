@@ -12,8 +12,8 @@ sys.path.insert(0, str(ROOT))
 from scheduler.io import compare, loads, run
 from scheduler._native import IndexedHeap
 
-st.set_page_config(page_title="Deadline-Aware Scheduling Simulator", layout="wide")
-st.title("Deadline-Aware Scheduling Simulator")
+st.set_page_config(page_title="CPU Scheduling Simulator", layout="wide")
+st.title("CPU Scheduling Simulator")
 st.caption("C++ backend · indexed min-heaps · deterministic, preemptive single-CPU simulation")
 st.info(
     "Times below are virtual workload units. This is a scheduling simulator, not an RTOS or a wall-clock deadline guarantee."

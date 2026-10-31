@@ -4,9 +4,7 @@ from pathlib import Path
 import sys
 from .io import compare, load, prepare, run
 
-parser = argparse.ArgumentParser(
-    description="Deadline-Aware Scheduling Simulator (virtual single CPU)"
-)
+parser = argparse.ArgumentParser(description="CPU Scheduling Simulator (virtual single CPU)")
 parser.add_argument("command", choices=["run", "compare", "validate"])
 parser.add_argument("workload", type=Path)
 parser.add_argument("--policy", choices=["edf", "fixed", "fifo"], default="edf")

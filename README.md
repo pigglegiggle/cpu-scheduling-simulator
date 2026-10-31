@@ -1,4 +1,4 @@
-# Deadline-Aware Scheduling Simulator
+# CPU Scheduling Simulator
 
 A C++17 backend for studying **which ready job should run next** when execution time and deadlines compete for one CPU. It implements its own indexed min-heap, compares preemptive Earliest Deadline First (EDF), preemptive Fixed Priority and non-preemptive FIFO, and produces reproducible execution timelines, deadline-miss events and per-job outcomes.
 
@@ -36,7 +36,9 @@ Requirements: a C++17 compiler (`clang++` by default), `make`, and Python 3.13 (
 # Install Apple's compiler tools if needed:
 xcode-select --install
 
-# From this project directory:
+# Clone and enter the project:
+git clone https://github.com/pigglegiggle/cpu-scheduling-simulator.git
+cd cpu-scheduling-simulator
 make setup
 make test
 make demo
@@ -60,7 +62,7 @@ Inside Ubuntu (including WSL2):
 ```sh
 sudo apt update
 sudo apt install -y build-essential clang git python3 python3-dev python3-venv
-cd /path/to/deadline-aware-task-scheduler
+cd /path/to/cpu-scheduling-simulator
 make setup
 make test
 make ui
